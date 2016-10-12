@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html ng-app="weatherApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Origin/al Weather Application</title>
+
+<!-- bower:css -->
+<!-- endbower -->
+
+<!-- inject:css -->
+<link rel="stylesheet" href="/app/styles/build.css">
+<link rel="stylesheet" href="/app/styles/styles.css">
+<!-- endinject -->
+</head>
+
+<body ng-controller="WeatherController as vm">
+    <!-- Heading: box: title -->
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1>Origin Weather Application</h1>
+                <p>baby, it's {{}} outside</p>
+            </div>
+        </div>
+
+        <!-- Button: city row -->
+        <div class="btn-row">
+            <button ng-click="vm.getInfo('San Diego')"  type="submit" class="btn btn-primary pull-left">San Diego</button>
+            <button ng-click="vm.getInfo('New York')" type="submit"  class="btn btn-primary pull-left">New York</button>
+            <button ng-click="vm.getInfo('Seattle')" type="submit" class="btn btn-primary pull-left">Seattle</button>
+            <button ng-click="vm.getInfo('London')" type="submit" class="btn btn-primary pull-left">London</button>
+            <button ng-click="vm.getInfo('Tokyo')" type="submit" class="btn btn-primary pull-left">Tokyo</button>
+        </div>
+    </div>
+
+    <!-- Button: city search -->
+    <div class="panel-body">
+        <div class="input-group">
+            <input ng-model="vm.cityname" class="form-control" type="text" placeholder="Search a different city">
+                <span class="input-group-btn">
+                    <button ng-click="vm.getInfo(vm.cityname)" class="btn btn-secondary" type="button">Go!</button>
+                </span>
+        </div>
+    </div>
+
+    <!-- Panel: city info -->
+    <div class="container-fuild">
+        <div class="col-xs-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">City Information</div>
+                    <div class="panel-body">
+                        <label>City</label>
+                            <p>{{vm.cityData.name}}</p>
+                        <label>Lat/Long</label>
+                            <p>{{vm.coord.lat}}{{vm.cityData.coord.lon}}</p>
+                        <label>Temperature(&#8457;)</label>
+                            <p>{{vm.cityData.main.temp}}</p>
+                        <label>Lowest Temp(&#8457;)</label>
+                            <p>{{vm.cityData.main.temp_min}}</p>
+                        <label>Highest Temp(&#8457;)</label>
+                            <p>{{vm.cityData.main.temp_max}}</p>
+                        <label>Pressure</label>
+                            <p>{{vm.cityData.main.pressure}}</p>
+                        <label>Humidity</label>
+                            <p>{{vm.cityData.main.humidity}}</p>
+                        <label>Wind Speed</label>
+                            <p>{{vm.cityData.wind.speed}}</p>
+                    </div>
+            </div>
+        </div>
+
+        <!-- Panel: search history -->
+        <div class="col-xs-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">Search History</div>
+                    <div class="panel-body">
+                        <table>
+                            <tr ng-repeat="info in vm.history">
+                                <td>{{info.place}}</td>
+                                <td class="text-right">{{info.dt | date:'MM/dd/yyyy HH:mm:ss'}}</td> <!-- convert UNIX number to time and date -->
+                            </tr>
+                        </table>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript" src="main.js"></script>
+
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<!-- endbower -->
+
+<!-- inject:js -->
+<script src="/app/app.js"></script>
+<script src="/app/index.js"></script>
+<script src="/app/weather.controller.js"></script>
+<script src="/app/weather.factory.js"></script>
+<!-- endinject -->  
+</body>
+</html>
