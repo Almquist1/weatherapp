@@ -1,40 +1,40 @@
 (function() {
     'use strict';
+
     angular
-        .module('module')
-        .factory('weatherfactory', weatherfactory);
-weatherFactory.$inject = ['$http'];
+        .module('weatherApp')
+        .factory('WeatherFactory', WeatherFactory);
+
+    WeatherFactory.$inject = ['$http'];
 
     /* @ngInject */
-    function factory(dependencies) {
+    function WeatherFactory($http) {
+
         var service = {
-            func: func
+            getWeather: getWeather
         };
+
         return service;
 
         ////////////////
 
-        function func() {
-        }
+        function getWeather(city) {
+            // Get method for API by city ID
+            return $http({
+                method: 'GET',
+                url: 'http://api.openweathermap.org/data/2.5/weather',
+                params: {
+                    APPID: '011bb4f570222d783dd60fedecd4fb97',
+                    q: city,
+                    units: "imperial"
+                },
+
+            }).then(function(response) {
+
+                return response.data;
+        });
+
     }
+
+}
 })();
-
-
-function getTopspots(city) {
-var defer = $q.defer();
-$http({
-	method: ‘GET’, 
-	url:
-	params: {
-		APPID: 
-		id:
-})
-
-.then(
-	function(response){
-		if(typeof response.data === ‘object){
-			defer.resolve(response);
-
-			toast.success(‘We have weather!’);
-
-

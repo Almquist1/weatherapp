@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app')
+        .module('weatherApp')
         .controller('WeatherController', WeatherController);
 
     WeatherController.$inject = ['WeatherFactory', '$http'];

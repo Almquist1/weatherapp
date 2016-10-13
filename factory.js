@@ -27,7 +27,7 @@
                     APPID: '',
                     q: city,
                     units: "imperial"
-                }
+                },
 
             }).then(function(response) {
 
